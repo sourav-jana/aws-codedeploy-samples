@@ -5,8 +5,10 @@ files:
     destination: /tmp/elb-test
 hooks:
   ApplicationStop:
-    - location: deregister_from_elb.sh
     - location: stop_httpd.sh
+    - location: scripts/deregister_from_elb.sh
+       timeout: 180
   ApplicationStart:
     - location: start_httpd.sh
-    - location: register_with_elb.sh
+    - location: scripts/register_with_elb.sh
+       timeout: 180
